@@ -12,21 +12,6 @@ Some of the checklists in this doc are for **C4 (🐺)** and some of them are fo
 
 ---
 
-# Contest setup
-
-## 🐺 C4: Set up repos
-- [x] Create a new private repo named `YYYY-MM-sponsorname` using this repo as a template.
-- [x] Rename this repo to reflect contest date (if applicable)
-- [ ] Rename contest H1 below
-- [ ] Update pot sizes
-- [ ] Fill in start and end times in contest bullets below
-- [ ] Add link to submission form in contest details below
-- [ ] Add the information from the scoping form to the "Scoping Details" section at the bottom of this readme.
-- [ ] Add matching info to the [code423n4.com public contest data here](https://github.com/code-423n4/code423n4.com/blob/main/_data/contests/contests.csv))
-- [ ] Add sponsor to this private repo with 'maintain' level access.
-- [ ] Send the sponsor contact the url for this repo to follow the instructions below and add contracts here. 
-- [ ] Delete this checklist.
-
 # Repo setup
 
 ## ⭐️ Sponsor: Add code to this repo
