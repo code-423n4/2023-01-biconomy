@@ -55,8 +55,8 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 - Join [C4 Discord](https://discord.gg/code4rena) to register
 - Submit findings [using the C4 form](https://code4rena.com/contests/2022-12-biconomy-contest/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
-- Starts December 16, 2022 20:00 UTC
-- Ends January 03, 2023 20:00 UTC
+- Starts December 20, 2022 20:00 UTC
+- Ends January 05, 2023 20:00 UTC
 
 ## C4udit / Publicly Known Issues
 
