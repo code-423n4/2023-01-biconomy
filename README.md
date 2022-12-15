@@ -64,23 +64,59 @@ The C4audit output for the contest can be found [here](add link to report) withi
 
 *Note for C4 wardens: Anything included in the C4udit output is considered a publicly known issue and is ineligible for awards.*
 
-[ ⭐️ SPONSORS ADD INFO HERE ]
+1. User are able to specify arbitrary `gasFeePaymentArgs` and can bypass fee payment: An off-chain check is performed by Biconomy's relayers to verify if enough gas fee has been paid before processing the transaction on the destination chain. Insufficient fee payment would result in the user's funds being locked on the source chain liquidity pool which dis-incentivises users from paying insufficient gas fee.
 
 # Overview
-
-*Please provide some context about the code being audited, and identify any areas of specific concern in reviewing the code. (This is a good place to link to your docs, if you have them.)*
-
 # Scope
 
-*List all files in scope in the table below -- and feel free to add notes here to emphasize areas of focus.*
+## CCMP (ccmp-contracts)
 
-| Contract | SLOC | Purpose | Libraries used |  
+| Contract | SLoC | Purpose | Libraries used |
 | ----------- | ----------- | ----------- | ----------- |
-| contracts/folder/sample.sol | 123 | This contract does XYZ | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+| contracts/structures/CrossChainMessage.sol | 67 | Definitions for Cross Chain Message Structure |
+| contracts/structures/Constants.sol | 6  | Defines constants like NATIVE token address
+| contracts/structures/Wormhole.sol | 33 | Definitions for interacting with wormhole protocol contracts |
+| contracts/security/Pausable.sol | 71 | Abstract contract for implementing pausibility | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+| contracts/CCMPExecutor.sol | 33 | Handles CCMP Message Execution | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+| contracts/libraries/LibDiamond.sol | 317 | Library for implementing the Diamond Pattern for CCMPGateway
+| contracts/adaptors/WormholeAdaptor.sol | 159 | Protocol Adapter for sending and receiving messages via Wormhole Protocol | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+| contracts/adaptors/HyperlaneAdaptor.sol | 183 |Protocol Adapter for sending and receiving messages via Hyperlane Protocol| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+| contracts/adaptors/AxelarAdaptor.sol | 186 |Protocol Adapter for sending and receiving messages via Axelar GMP Protocol| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) [`@abacus-network/core/*`](https://github.com/hyperlane-xyz/hyperlane-monorepo/tree/main/solidity/contracts)|
+| contracts/adaptors/base/CCMPAdaptorBase.sol | 38 | Abstract Contract for implementing protocol adaptors| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+| contracts/receiver/CCMPReceiverBase.sol | 30 | Abstract contract for implementing CCMPReceiver{Upgradeable/Non Upgradeable}
+| contracts/receiver/CCMPReceiverUpgradeable.sol | 16 | Abstract Contract exposing functionality for source verification for a message on the destination chain during execution.
+| contracts/receiver/CCMPReceiver.sol | 8  | Abstract Contract exposing functionality for source verification for a message on the destination chain during execution.
+| contracts/gateway/facets/DiamondCutFacet.sol | 26 | Facet implenting standard Diamond Cut functionality
+| contracts/gateway/facets/DiamondInit.sol | 38 | Facet for initializing the Diamond during deployment
+| contracts/gateway/facets/CCMPReceiveMessageFacet.sol | 113 | Facet for processing messages on the destination chain
+| contracts/gateway/facets/DiamondLoupeFacet.sol | 182 | Facet implenting standard Diamond Loupe functionality
+| contracts/gateway/facets/CCMPSendMessageFacet.sol | 126 | Facet for processing messages on the source chain
+| contracts/gateway/facets/CCMPConfigurationFacet.sol | 79 | Facet for setting configuration state like owner etc
+| contracts/gateway/Diamond.sol | 69 | The Diamond Proxy Contract, an instance of this is used as CCMPGateway
+| contracts/interfaces/IWormhole.sol | 25 |
+| contracts/interfaces/IDiamondCut.sol | 20 |
+| contracts/interfaces/ICCMPRouterAdaptor.sol | 15 |
+| contracts/interfaces/ICCMPGateway.sol | 136 |
+| contracts/interfaces/ICCMPExecutor.sol | 7  |
+| contracts/interfaces/IAxelarGateway.sol | 133 |
+| contracts/interfaces/IDiamondLoupe.sol | 40 |
+| contracts/interfaces/IDiamond.sol | 20 |
+| contracts/interfaces/IERC165.sol | 11 |
+| contracts/interfaces/IERC173.sol | 1 |
+
+## Hyphen (hyphen-contract)
+| Contract | SLoC | Purpose | Libraries used |
+| ----------- | ----------- | ----------- | ----------- |
+| contracts/hyphen/LiquidityPool.sol | 817 | Liquidity Pool exposes Deposit and Call functionality | [`@openzeppelin/*`](https://openzeppelin.com/contracts/), ccmp-contracts |
+| contracts/hyphen/token/TokenManager.sol | 187 | Manages configuration for tokens supported in Hyphen | [`@openzeppelin/*`](https://openzeppelin.com/contracts/)
+| contracts/hyphen/structures/DepositAndCall.sol | 22 | Defintions for DepositAndCall functions
+| contracts/hyphen/interfaces/ITokenManager.sol | 29 |
+| contracts/hyphen/interfaces/ICCMPGateway.sol | 20 |
+| contracts/hyphen/interfaces/ILiquidityPool.sol | 28 |
 
 ## Out of scope
 
-*List any files/contracts that are out of scope for this audit.*
+Any files not listed above should be considered out of scope and assumed to be bug free.
 
 # Additional Context
 
