@@ -53,8 +53,6 @@ The C4audit output for the contest can be found [here](add link to report) withi
 1. User are able to specify arbitrary `gasFeePaymentArgs` and can bypass fee payment: An off-chain check is performed by Biconomy's relayers to verify if enough gas fee has been paid before processing the transaction on the destination chain. Insufficient fee payment would result in the user's funds being locked on the source chain liquidity pool which dis-incentivises users from paying insufficient gas fee.
 
 # Overview
-
-*Please provide some context about the code being audited, and identify any areas of specific concern in reviewing the code. (This is a good place to link to your docs, if you have them.)*
 ## Introduction
 
 Hyphen started as a liquidity bridge to solve the user pain point of moving assets from one chain to another. Solutions for the same existed in the past, but they were slow and inefficient. Hyphen is faster and relatively cheaper than the other solutions out there for the retail audience. Still, Hyphen as a whole is only solving the liquidity availability problem for dApps and users alike. Navigating the multi-chain world is still as complex for users as before.
@@ -169,7 +167,7 @@ A message sent through CCMP has the following format:
 | contracts/interfaces/IDiamondLoupe.sol | 40 |
 | contracts/interfaces/IDiamond.sol | 20 |
 | contracts/interfaces/IERC165.sol | 11 |
-| contracts/interfaces/IERC173.sol | 1 |
+| contracts/interfaces/IERC173.sol | 8 |
 
 ## Hyphen (hyphen-contract)
 | Contract | SLoC | Purpose | Libraries used |
@@ -188,8 +186,8 @@ Any files not listed above should be considered out of scope and assumed to be b
 ## Scoping Details 
 ```
 - If you have a public code repo, please share it here:  https://github.com/bcnmy/hyphen-contract, https://github.com/bcnmy/ccmp-contracts
-- How many contracts are in scope?:   49
-- Total SLoC for these contracts?:  4235
+- How many contracts are in scope?:   36
+- Total SLoC for these contracts?:  3295
 - How many external imports are there?:  9
 - How many separate interfaces and struct definitions are there for the contracts within scope?:  13 interfaces, 8 structs
 - Does most of your code generally use composition or inheritance?:   Both are used, there is a “is-a” relationship b/w all protocol adapters CCMPAdaptorBase, while there is a “has-a” relationship b/w CCMPGateway and CCMPAdaptors.
@@ -210,7 +208,43 @@ Any files not listed above should be considered out of scope and assumed to be b
 ```
 
 # Tests
+Clone the repository: `git clone git@github.com:code-423n4/2022-12-biconomy.git`
 
-*Provide every step required to build the project from a fresh git clone, as well as steps to run the tests with a gas report.* 
+## CCMP Contracts
+```
+# Setup
+cd ccmp-contracts
+yarn
 
-*Note: Many wardens run Slither as a first pass for testing.  Please document any known errors with no workaround.* 
+# Environment
+# The only required key for local testing is the METADEPLOYER_PRIVATE_KEY, set it to an arbitrary private key
+cp .env.example .env 
+
+# Compile the contracts
+yarn compile
+
+# Run the tests
+yarn test
+
+# Run coverage
+yarn coverage
+```
+
+## Hyphen Contracts
+```
+# Setup
+cd hyphen-contract
+yarn
+
+# Environment
+cp .env.example .env 
+
+# Compile the contracts
+yarn compile
+
+# Run the tests
+yarn test
+
+# Run coverage
+yarn coverage
+```
