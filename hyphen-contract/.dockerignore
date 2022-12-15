@@ -1,0 +1,23 @@
+# ignore all logs
+*.log
+
+node_modules/
+dist/
+
+*.cert
+*.key
+LICENSE
+README.md
+undefined
+.env
+
+# Ignore Mac DS_Store files
+.DS_Store
+**/.DS_Store
+
+# VSCode project files
+.vscode
+.openzeppelin
+.vscode
+cache
+artifacts

@@ -1,0 +1,13 @@
+//SPDX-License-Identifier: Unlicense
+pragma solidity ^0.8.0;
+
+import "./Create3.sol";
+
+contract Deployer {
+    event ContractDeployed(address indexed contractAddress);
+
+    function deploy(bytes32 _salt, bytes calldata _creationCode) external {
+        address deployedContract = Create3.create3(_salt, _creationCode);
+        emit ContractDeployed(deployedContract);
+    }
+}
