@@ -53,8 +53,6 @@ The C4audit output for the contest can be found [here](add link to report) withi
 1. User are able to specify arbitrary `gasFeePaymentArgs` and can bypass fee payment: An off-chain check is performed by Biconomy's relayers to verify if enough gas fee has been paid before processing the transaction on the destination chain. Insufficient fee payment would result in the user's funds being locked on the source chain liquidity pool which dis-incentivises users from paying insufficient gas fee.
 
 # Overview
-<<<<<<< HEAD
-=======
 
 *Please provide some context about the code being audited, and identify any areas of specific concern in reviewing the code. (This is a good place to link to your docs, if you have them.)*
 ## Introduction
@@ -76,13 +74,13 @@ The architecture as shown in the diagram above consists of both on-chain and off
 
 ### On-Chain:
 
-1. **MessagePassingGateway:** Smart contract responsible for 
+1. **CCMPGateway:** Smart contract responsible for 
     1. Receive cross-chain message transfer calls and route them through a configurable protocol (Wormhole, Axelar, Hyperlane …) on the source chain. 
     2. receiving, validating, and executing cross-chain message calls on the destination chain.
 2. **ProtocolAdapter:** Adapter Contracts for each supported underlying message transport protocol (Wormhole, Axelar, Hyperlane…). Responsible for 
-    1. receiving messages from MessagePassingGateway and routing them to the destination chain using the underlying protocol.
+    1. receiving messages from CCMPGateway and routing them to the destination chain using the underlying protocol.
     2. expose functions for validating a message (and its signature) on the destination chain.
-3. **Hyphen Liquidity Pool:** Our liquidity pool contracts, which internally talk to the MessagePassingGateway, are responsible for exposing the `depositAndCall` functionality.
+3. **Hyphen Liquidity Pool:** Our liquidity pool contracts, which internally talk to the CCMPGateway, are responsible for exposing the `depositAndCall` functionality.
 4. **Executor:** Post verification, the CCMP Gateway forwards the messages to the Executor contracts, which executes the contents of the message on the exit chain. This implies for all contracts specified in the payload array, the Executor contract will be the `msg.sender` when the specified payload is executed.
 
 ### Off-Chain:
@@ -136,7 +134,6 @@ A message sent through CCMP has the following format:
 10. payload: An array of messages to be executed on the destination chain.
 
 
->>>>>>> ee501a50d547136ff3c00dc3f9891f59ce9258f7
 # Scope
 
 ## CCMP (ccmp-contracts)
@@ -187,12 +184,6 @@ A message sent through CCMP has the following format:
 ## Out of scope
 
 Any files not listed above should be considered out of scope and assumed to be bug free.
-
-# Additional Context
-
-*Describe any novel or unique curve logic or mathematical models implemented in the contracts*
-
-*Sponsor, please confirm/edit the information below.*
 
 ## Scoping Details 
 ```
