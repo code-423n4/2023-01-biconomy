@@ -75,4 +75,3 @@ Scenario: A smart contract `0xCONTRACT` on ethereum wants to send a cross-chain 
 ## Destination Chain
 
 1. `0xCCMPGateway` calls the underlying adapter to verify the message with the underlying protocol.
-1. The message is passed on `0xCCMPExecutor`, which executes the contract calls and Hyphen Token Transfers included in the original payload.
