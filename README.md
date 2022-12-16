@@ -148,7 +148,9 @@ A message sent through CCMP has the following format:
 
 ## Out of scope
 
-Any files not listed above should be considered out of scope and assumed to be bug free.
+Any files not listed above should be considered out of scope and assumed to be bug free. For instance, when `LiquidityPool.depositAndCall()` is called, a call to LiquidityProviders is made to update the current liquidity. This contract has been previously audited and thus should be considered to be bug free for the purposes of this audit and thus out of scope.
+
+In addition, for Hyphen we request that the wardens focus on auditing the `depositAndCall()` and `sendFundsToUserFromCCMP()` functions (and any functions called by them under the scope).
 
 ## Scoping Details 
 ```
