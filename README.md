@@ -1,15 +1,15 @@
 # Biconomy contest details
-- Total Prize Pool: Sum of below awards
-  - HM awards: $80,750 USDC
-  - QA report awards: $8,500 USDC 
-  - Gas report awards: $4,250 USDC
-  - Judge + presort awards: $17,000 USDC
+- Total Prize Pool: $60,500 USDC
+  - HM awards: $42,500 USDC
+  - QA report awards: $5000 USDC 
+  - Gas report awards: $2500 USDC
+  - Judge + presort awards: $10,000 USDC
   - Scout awards: $500 USDC
 - Join [C4 Discord](https://discord.gg/code4rena) to register
-- Submit findings [using the C4 form](https://code4rena.com/contests/2022-12-biconomy-contest/submit)
+- Submit findings [using the C4 form](https://code4rena.com/contests/2023-01-biconomy-contest/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
-- Starts December 20, 2022 20:00 UTC
-- Ends January 05, 2023 20:00 UTC
+- Starts January 04, 2023 20:00 UTC
+- Ends January 09, 2023 20:00 UTC
 
 ## C4udit / Publicly Known Issues
 
@@ -154,23 +154,22 @@ In addition, for Hyphen we request that the wardens focus on auditing the `depos
 
 ## Scoping Details 
 ```
-- If you have a public code repo, please share it here:  https://github.com/bcnmy/hyphen-contract, https://github.com/bcnmy/ccmp-contracts
+- If you have a public code repo, please share it here:  https://github.com/bcnmy/scw-contracts/tree/master-c4-readys
 - How many contracts are in scope?:   36
-- Total SLoC for these contracts?:  3295
-- How many external imports are there?:  9
-- How many separate interfaces and struct definitions are there for the contracts within scope?:  13 interfaces, 8 structs
-- Does most of your code generally use composition or inheritance?:   Both are used, there is a “is-a” relationship b/w all protocol adapters CCMPAdaptorBase, while there is a “has-a” relationship b/w CCMPGateway and CCMPAdaptors.
-- How many external calls?:   3
-- What is the overall line coverage percentage provided by your tests?:  75
-- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:   true
-- Please describe required context:  The audit covers CCMP Core as well as usage of CCMP by Hyphen Liquidity Pool contracts in it's deposit and call functionality. Therefore, understand how both codebases work with each other is important. It is also important to understand how Wormhole, Axelar and Hyperlane's contracts work to ensure that all the necessary checks have been performed. 
+- Total SLoC for these contracts?:  1825
+- How many external imports are there?:  1
+- How many separate interfaces and struct definitions are there for the contracts within scope?:  8 interfaces, 11 structs
+- Does most of your code generally use composition or inheritance?:   Yes
+- What is the overall line coverage percentage provided by your tests?:  41
+- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:   false
+- Please describe required context:   
 - Does it use an oracle?:  false
-- Does the token conform to the ERC20 standard?:  NO
+- Does the token conform to the ERC20 standard?:  Yes
 - Are there any novel or unique curve logic or mathematical models?: NA
-- Does it use a timelock function?:  NO
+- Does it use a timelock function?:  N/A
 - Is it an NFT?: NO
 - Does it have an AMM?: NO  
-- Is it a fork of a popular project?:  false 
+- Is it a fork of a popular project?:  True; added account abstraction interface on gnosis safe base wallet. execTransaction uses batchId. wallet factory has create2 support
 - Does it use rollups?:   false
 - Is it multi-chain?:  true
 - Does it use a side-chain?: false
