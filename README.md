@@ -17,7 +17,6 @@ The C4audit output for the contest can be found [here](add link to report) withi
 
 *Note for C4 wardens: Anything included in the C4udit output is considered a publicly known issue and is ineligible for awards.*
 
-1. User are able to specify arbitrary `gasFeePaymentArgs` and can bypass fee payment: An off-chain check is performed by Biconomy's relayers to verify if enough gas fee has been paid before processing the transaction on the destination chain. Insufficient fee payment would result in the user's funds being locked on the source chain liquidity pool which dis-incentivises users from paying insufficient gas fee.
 
 # Overview
 ## Introduction
