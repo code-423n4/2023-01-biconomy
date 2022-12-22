@@ -18,8 +18,6 @@ The C4audit output for the contest can be found [here](add link to report) withi
 
 *Note for C4 wardens: Anything included in the C4udit output is considered a publicly known issue and is ineligible for awards.*
 
-## Introduction
-
 # Biconomy Smart Account (Smart Contract Wallet) Overview
 
 Biconomy Smart Account is a smart contract wallet that builds on core concepts of Gnosis / Argent safes and implements an interface to support calls from [account abstraction](https://eips.ethereum.org/EIPS/eip-4337) Entry Point contract. We took all the the good parts of existing smart contract wallets.
