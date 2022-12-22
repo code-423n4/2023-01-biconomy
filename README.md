@@ -151,6 +151,7 @@ contracts/smart-contract-wallet/libs/LibAddress.sol | 9
 contracts/smart-contract-wallet/libs/Math.sol | 208
 
 **Account abstraction EntryPoint and StakeManager contracts and interfaces**
+
 Relevant missing test cases in this repo can be found here : <https://github.com/eth-infinitism/account-abstraction/tree/develop/test>
 
 | Contract | SLoC | Purpose | Libraries used |
@@ -167,6 +168,7 @@ contracts/smart-contract-wallet/aa-4337/interfaces/UserOperation.sol | 48
 contracts/smart-contract-wallet/aa-4337/interfaces/IAggregator.sol | 8
 
 **Account abstraction BasePaymaster and Biconomy Singleton Paymaster**
+
 (Paymaster is a special contract that acts as a Gas Tank to sponsor the user operations, that pre deposits native token gas on the EntryPoint contract (which in turn refunds the relayer/bundler). Biconomy uses a specific paymaster implementation called VerifyingPaymaster where an off-chain signature is passed to be verified for gas sponsorship within the contract)
 
 | Contract | SLoC | Purpose | Libraries used |
