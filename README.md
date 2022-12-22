@@ -18,138 +18,159 @@ The C4audit output for the contest can be found [here](add link to report) withi
 *Note for C4 wardens: Anything included in the C4udit output is considered a publicly known issue and is ineligible for awards.*
 
 
-# Overview
 ## Introduction
+# Biconomy Smart Account (Smart Contract Wallet) Overview
 
-Hyphen started as a liquidity bridge to solve the user pain point of moving assets from one chain to another. Solutions for the same existed in the past, but they were slow and inefficient. Hyphen is faster and relatively cheaper than the other solutions out there for the retail audience. Still, Hyphen as a whole is only solving the liquidity availability problem for dApps and users alike. Navigating the multi-chain world is still as complex for users as before.
+Biconomy Smart Account is a smart contract wallet that builds on core concepts of Gnosis / Argent safes and implements an interface to support calls from [account abstraction](https://eips.ethereum.org/EIPS/eip-4337) Entry Point contract. We took all the the good parts of existing smart contract wallets. 
 
-Even after the liquidity movement, the user has to interact with the dApp smart contract for which they would need the native token for gas, and they would need to approve the dApp contract to allow them to use the funds and do any other action on the dApp. All of this is a UX nightmare, the users shouldn’t have to perform a million steps to onboard to a dApp, be it on any chain.
+These smart wallets have a single owner (1/1 Multisig) and are designed in such a way that it is
 
-This is where Bridge & Call comes in as a holistic solution that can provide fast and cheap liquidity movement along with the ease of 1 click multi-chain transactions for the end users. The users don’t even have to think about destination chain gas tokens or smart contract approvals.  From liquidity layer to cross-chain simplification, Bridge & Call is the go-to solution for developers to thrive in the multi-chain world.
+- Cheap to deploy copies of a base wallet
+- Wallet addresses are counterfactual in nature (you can know the address in advance and users will have the same address across all EVM chains)
+- Deployment cost can be sponsored (gasless transactions by a relayer)
+- Modules can be used to extend the functionality of the smart contract wallet. Concepts like multi-sig, session keys, etc also can be implemented using the MultiSig Module, SessionKey Module & so on.
+
+## Smart Contracts
+All the contracts in this section are to be reviewed. Any contracts not in this list are to be ignored for this contest.
+
+#### BaseSmartAccount.sol (51 sloc)
+Abstract contract that implements EIP4337 IWallet interface 
+defines set of methods (compatible with EIP and Biconomy SDK) that all Smart Wallets must implement
+
+#### Proxy.sol (26 sloc)
+EIP1167 Proxy
+
+#### SmartAccountFactory.sol (38 sloc)
+Constract responsible for deploying smart wallets aka accounts using create2 and create
+Has a method to compute conter factual wallet of the address before deploying
+
+function deployCounterFactualWallet(address _owner, address _entryPoint, address _handler, uint _index) public returns(address proxy)
+
+salt consists of _owner and _index. _entryPoint and _handler are required to init the wallet. 
+(contest bonus : showcase any potential front running in wallet deployment)
+
+#### SmartAccount.sol (332 sloc)
+Base implementation contract for smart wallet
+reference 1 : https://docs.gnosis-safe.io/contracts
+reference 2 : https://github.com/eth-infinitism/account-abstraction/blob/develop/contracts/samples/SimpleWallet.sol
+notes: 
+1) reverting methods are used for gas estimations
+2) transactions happen via EOA signature by calling execTransaction or validateUserOp and execFromEntryPoint via entry point
+3) currently 1-1 multisig
+4) ECDSA used for signature verification. contract signatures are suppoprted using EIP1271 (we encourage wardens to test integration of smart contract wallet for providing signature on protocols like opensea)
+
+#### EntryPoint.sol (344 sloc)
+EIP4337 Entry Point contract (https://blog.openzeppelin.com/eth-foundation-account-abstraction-audit/)
+
+#### StakeManager.sol (76 sloc)
+Stake Manager for wallet and paymaster deposits / stakes
+https://blog.openzeppelin.com/eth-foundation-account-abstraction-audit/
+
+#### Executor.sol (25 sloc)
+helper contract to make calls and delegatecalls to dapp contracts
+#### FallbackManager.sol (34 sloc)
+Fallback manager manages a fallback handler to fallback to (delegate call) when a method is not found in wallet implementation contract
+#### ModuleManager.sol (75 sloc)
+Gnosis Safe module manager
+#### DefaultCallbackHandler.sol (50 sloc)
+Manages hooks to react to receiving tokens
+
+#### MultiSend.sol (35 sloc)
+Allows to batch multiple transactions into one. Relayer -> Smart Wallet - > MultiSend -> Dapp contract / contracts
+
+#### MultiSendCallOnly.sol (30 sloc)
+MultiSend functionality but reverts if a transaction tries to do delegatecall
+
+#### VerifyingSingletonPaymaster.sol (74 sloc)
+ A paymaster that uses external service to decide whether to pay for the UserOp. The paymaster trusts an external signer to sign the transaction. The calling user must pass the UserOp to that external signer first, which performs whatever off-chain verification before signing the UserOp. Singleton Paymaster is biconomy Paymaster which can be used by all the Dapps and manages gas accounting for their corresponding paymasterId. 
+
+ #### PaymasterHelpers.sol ()
+ Library useful for decoding paymaster data and context
+
 
 ## Architecture
 
-Bridge & Call enables transmitting a payload from the source chain to the destination chain. This payload consists of all the operations that need to be performed at the destination chain and the order in which those needs to be performed. The validity of the payload is ensured via external General Message Passing solutions. There are a lot of General Message Passing protocols out there, and they range from semi-centralized (Wormhole) to decentralized (Axelar), and all of them have their own caveats, capabilities, and trust assumptions. We didn’t want to tie ourselves to any of them and decided to create an aggregator layer (the CCMP layer) that could interact with any of these protocols. We currently provide integration with Wormhole and Hyperlane (with Axelar planned in the future) and can add any other protocol in the future if the need arises. The developers are free to choose any of them and can also change the protocol per call based on security and trust assumption needs.
+https://github.com/eth-infinitism/account-abstraction/tree/develop/eip/assets/eip-4337
 
-![Architecture](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/09b1baa4-20e1-4147-8f98-271a8fd510e4/Diagram.drawio.svg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221215%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221215T103003Z&X-Amz-Expires=86400&X-Amz-Signature=ed1c73e0269f92698c71f21032c1ad0c9d61ddb8545c7280cf8b77f1762cc971&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Diagram.drawio.svg%22&x-id=GetObject)
-any other protocol in the future if the need arises. The developers are free to choose any of them and can also change the protocol per call based on security and trust assumption needs.
+public document for Biconomy SDK that uses these smart contract wallets and account abstraction EIP4337
+https://www.notion.so/biconomy/Biconomy-SDK-adf0c6cedb08436097bf099b8f46aac7
 
-The architecture as shown in the diagram above consists of both on-chain and off-chain components 
-
-### On-Chain:
-
-1. **CCMPGateway:** Smart contract responsible for 
-    1. Receive cross-chain message transfer calls and route them through a configurable protocol (Wormhole, Axelar, Hyperlane …) on the source chain. 
-    2. receiving, validating, and executing cross-chain message calls on the destination chain.
-2. **ProtocolAdapter:** Adapter Contracts for each supported underlying message transport protocol (Wormhole, Axelar, Hyperlane…). Responsible for 
-    1. receiving messages from CCMPGateway and routing them to the destination chain using the underlying protocol.
-    2. expose functions for validating a message (and its signature) on the destination chain.
-3. **Hyphen Liquidity Pool:** Our liquidity pool contracts, which internally talk to the CCMPGateway, are responsible for exposing the `depositAndCall` functionality.
-4. **Executor:** Post verification, the CCMP Gateway forwards the messages to the Executor contracts, which executes the contents of the message on the exit chain. This implies for all contracts specified in the payload array, the Executor contract will be the `msg.sender` when the specified payload is executed.
-
-### Off-Chain:
-
-1. **Indexer**: Indexes all the supported blockchains and exposes API for cross-chain messages
-2. **Relayer**: For Executing the fetched messages on the destination chain.
-## Message Structure
-
-A message sent through CCMP has the following format: 
-
-```
-{
-  "hash": "0x0d306eaae20471889d5c06df139f4b47fce53e09da1ed4f603652bf46cab5fc3",
-  "sender": "0x07d2d1690d13f5fd9f9d51a96cee211f6a845ac5",
-  "sourceGateway": "0x53b309ff259e568309a19810e3bf1647b6922afd",
-  "sourceAdaptor": "0x8c6ed76011b7d5ddcf8da88687c4b5a7a4b79165",
-  "sourceChainId": "43113",
-  "destinationGateway": "0x5db92fdac16d027a3fef6f438540b5818b6f66d5",
-  "destinationChainId": "80001",
-  "nonce": "14670593685062419975296469450205822900502679",
-  "routerAdaptor": "wormhole",
-  "gasFeePaymentArgs": {
-    "feeTokenAddress": "0xc74db45a7d3416249763c151c6324ceb6b3217fd",
-    "feeAmount": "10000000",
-    "relayer": "0x0000000000000000000000000000000000000001"
-  },
-  "payload": [
-    {
-      "to": "0xb831f0848a055b146a0b13d54cffa6c1fe201b83",
-      "_calldata": "0xfb7b8791000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000005f5e1000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000a759c8db00dadbe0599e3a38b19b5c0e12e43bbe00000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000000"
-    },
-    {
-      "to": "0xa759c8db00dadbe0599e3a38b19b5c0e12e43bbe",
-      "_calldata": "0x9c2bf952000000000000000000000000eabc4b91d9375796aa4f69cc764a4ab509080a5800000000000000000000000048e2577e5f781cbb3374912a31b1aa39c9e11d39000000000000000000000000fd210117f5b9d98eb710295e30fff77df2d80002000000000000000000000000f97859fb869329933b40f36a86e7e44f334ed16a000000000000000000000000da861c9dccff6d1fef7cae71b5b538af25063404"
-    }
-  ]
-}
-```
-
-### Fields:
-
-1. hash: A unique identifier of the CCMP Message, useful for tracking status and paying gas-fee.
-2. sender: Address of the contract interacting with the CCMP Gateway to send messages.
-3. sourceGateway: Address of the gateway on the source chain.
-4. sourceAdaptor: Address of the protocol adaptor on the source chain.
-5. sourceChainId: EVM Chain ID of the source chain.
-6. destinationGateway: Address of the gateway on the destination chain.
-7. nonce: Used to prevent message replay.
-8. routerAdaptor: The underlying protocol to use for sending messages. Possible values: “**wormhole**”, “**axelar**”, “**hyperlane**”.
-9. gasFeePaymentArgs: A structure describing the gas fee to be paid for verifying and executing the transaction on the destination chain. The gas fee required can be estimated on the chain by calling a relayer API.
-10. payload: An array of messages to be executed on the destination chain.
-
+Transactional level methods are either called on EntryPoint.sol -> handleOps() or on SmartAccount.sol (deleagted through Proxy.sol) -> execTransaction()
 
 # Scope
 
-## CCMP (ccmp-contracts)
+## SCW (wallet-contracts)
+These contracts uses EIP1167 minimal proxy (Proxy.sol) to deploy a clone of implementation contract (SmartAccount.sol)
+The factory contract that is responsible for deploying a smart contract wallet is SmartAccountFactory.sol which has methods to getCounterFactualWalletAddress and deploy wallet (using CREATE2)
+
+SmartAccount follows the IAccount interface proposed by EIP4337 https://eips.ethereum.org/EIPS/eip-4337
 
 | Contract | SLoC | Purpose | Libraries used |
 | ----------- | ----------- | ----------- | ----------- |
-| contracts/structures/CrossChainMessage.sol | 67 | Definitions for Cross Chain Message Structure |
-| contracts/structures/Constants.sol | 6  | Defines constants like NATIVE token address
-| contracts/structures/Wormhole.sol | 33 | Definitions for interacting with wormhole protocol contracts |
-| contracts/security/Pausable.sol | 71 | Abstract contract for implementing pausibility | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
-| contracts/CCMPExecutor.sol | 33 | Handles CCMP Message Execution | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
-| contracts/libraries/LibDiamond.sol | 317 | Library for implementing the Diamond Pattern for CCMPGateway
-| contracts/adaptors/WormholeAdaptor.sol | 159 | Protocol Adapter for sending and receiving messages via Wormhole Protocol | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
-| contracts/adaptors/HyperlaneAdaptor.sol | 183 |Protocol Adapter for sending and receiving messages via Hyperlane Protocol| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
-| contracts/adaptors/AxelarAdaptor.sol | 186 |Protocol Adapter for sending and receiving messages via Axelar GMP Protocol| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) [`@abacus-network/core/*`](https://github.com/hyperlane-xyz/hyperlane-monorepo/tree/main/solidity/contracts)|
-| contracts/adaptors/base/CCMPAdaptorBase.sol | 38 | Abstract Contract for implementing protocol adaptors| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
-| contracts/receiver/CCMPReceiverBase.sol | 30 | Abstract contract for implementing CCMPReceiver{Upgradeable/Non Upgradeable}
-| contracts/receiver/CCMPReceiverUpgradeable.sol | 16 | Abstract Contract exposing functionality for source verification for a message on the destination chain during execution.
-| contracts/receiver/CCMPReceiver.sol | 8  | Abstract Contract exposing functionality for source verification for a message on the destination chain during execution.
-| contracts/gateway/facets/DiamondCutFacet.sol | 26 | Facet implenting standard Diamond Cut functionality
-| contracts/gateway/facets/DiamondInit.sol | 38 | Facet for initializing the Diamond during deployment
-| contracts/gateway/facets/CCMPReceiveMessageFacet.sol | 113 | Facet for processing messages on the destination chain
-| contracts/gateway/facets/DiamondLoupeFacet.sol | 182 | Facet implenting standard Diamond Loupe functionality
-| contracts/gateway/facets/CCMPSendMessageFacet.sol | 126 | Facet for processing messages on the source chain
-| contracts/gateway/facets/CCMPConfigurationFacet.sol | 79 | Facet for setting configuration state like owner etc
-| contracts/gateway/Diamond.sol | 69 | The Diamond Proxy Contract, an instance of this is used as CCMPGateway
-| contracts/interfaces/IWormhole.sol | 25 |
-| contracts/interfaces/IDiamondCut.sol | 20 |
-| contracts/interfaces/ICCMPRouterAdaptor.sol | 15 |
-| contracts/interfaces/ICCMPGateway.sol | 136 |
-| contracts/interfaces/ICCMPExecutor.sol | 7  |
-| contracts/interfaces/IAxelarGateway.sol | 133 |
-| contracts/interfaces/IDiamondLoupe.sol | 40 |
-| contracts/interfaces/IDiamond.sol | 20 |
-| contracts/interfaces/IERC165.sol | 11 |
-| contracts/interfaces/IERC173.sol | 8 |
 
-## Hyphen (hyphen-contract)
-| Contract | SLoC | Purpose | Libraries used |
-| ----------- | ----------- | ----------- | ----------- |
-| contracts/hyphen/LiquidityPool.sol | 817 | Liquidity Pool exposes Deposit and Call functionality | [`@openzeppelin/*`](https://openzeppelin.com/contracts/), ccmp-contracts |
-| contracts/hyphen/token/TokenManager.sol | 187 | Manages configuration for tokens supported in Hyphen | [`@openzeppelin/*`](https://openzeppelin.com/contracts/)
-| contracts/hyphen/structures/DepositAndCall.sol | 22 | Defintions for DepositAndCall functions
-| contracts/hyphen/interfaces/ITokenManager.sol | 29 |
-| contracts/hyphen/interfaces/ICCMPGateway.sol | 20 |
-| contracts/hyphen/interfaces/ILiquidityPool.sol | 28 |
+ contracts/smart-contract-wallet/aa-4337/interfaces/IAccount.sol | 5
+ contracts/smart-contract-wallet/BaseSmartAccount.sol | 51
+ contracts/smart-contract-wallet/Proxy.sol | 26
+ contracts/smart-contract-wallet/SmartAccount.sol | 332 
+ contracts/smart-contract-wallet/common/Singleton.sol | 15 
+ contracts/smart-contract-wallet/interfaces/IERC165.sol | 4
+ contracts/smart-contract-wallet/base/ModuleManager.sol | 75
+ contracts/smart-contract-wallet/base/FallbackManager.sol | 33
+ contracts/smart-contract-wallet/common/SignatureDecoder.sol | 19
+ contracts/smart-contract-wallet/common/SecuredTokenTransfer.sol | 23
+ contracts/smart-contract-wallet/interfaces/ISignatureValidator.sol | 7
+ contracts/smart-contract-wallet/SmartAccountFactory.sol | 38
+ contracts/smart-contract-wallet/base/Executor.sol | 25
+ contracts/smart-contract-wallet/handler/DefaultCallbackHandler.sol | 50
+ contracts/smart-contract-wallet/interfaces/ERC1155TokenReceiver.sol | 17
+ contracts/smart-contract-wallet/interfaces/ERC721TokenReceiver.sol | 9
+ contracts/smart-contract-wallet/interfaces/ERC777TokensRecipient.sol | 11
+ contracts/smart-contract-wallet/interfaces/IERC1271Wallet.sol | 15
+ contracts/smart-contract-wallet/libs/LibAddress.sol | 9
+ contracts/smart-contract-wallet/libs/Math.sol | 208
+
+ Account abstraction EntryPoint and StakeManager contracts and interfaces
+ Relevent missing test cases in this repo can be found here : https://github.com/eth-infinitism/account-abstraction/tree/develop/test
+
+
+ | Contract | SLoC | Purpose | Libraries used |
+ | ----------- | ----------- | ----------- | ----------- |
+
+ ontracts/smart-contract-wallet/aa-4337/core/EntryPoint.sol | 344
+ contracts/smart-contract-wallet/aa-4337/core/SenderCreator.sol | 16
+ contracts/smart-contract-wallet/aa-4337/core/StakeManager.sol | 76
+ contracts/smart-contract-wallet/aa-4337/interfaces/IPaymaster.sol | 12
+ contracts/smart-contract-wallet/aa-4337/interfaces/IAggregatedAccount.sol | 7
+ contracts/smart-contract-wallet/aa-4337/interfaces/IEntryPoint.sol | 34
+ contracts/smart-contract-wallet/aa-4337/utils/Exec.sol | 51
+ contracts/smart-contract-wallet/aa-4337/interfaces/IStakeManager.sol | 44
+ contracts/smart-contract-wallet/aa-4337/interfaces/UserOperation.sol | 48
+ contracts/smart-contract-wallet/aa-4337/interfaces/IAggregator.sol | 8
+
+ Account abstraction BasePaymaster and Biconomy Signeton Paymaster
+ (Paymaster is a special contract that acts as a Gas Tank to sponsor the useroperations, that pre deposits native token gas on the EntryPoint contract (which in turn refunds the relayer/bundler). Biconomy uses a specific paymaster implementation called VerifyingPaymaster where an off-chain signature is passed to be verified for gas sponsorship within the contract)
+
+ | Contract | SLoC | Purpose | Libraries used |
+ | ----------- | ----------- | ----------- | ----------- |
+
+ contracts/smart-contract-wallet/paymasters/BasePaymaster.sol | 44
+ contracts/smart-contract-wallet/paymasters/PaymasterHelpers.sol | 29
+ contracts/smart-contract-wallet/paymasters/verifying/singleton/VerifyingSingletonPaymaster.sol | 71
+
+ Helpers/ utils
+
+ | Contract | SLoC | Purpose | Libraries used |
+ | ----------- | ----------- | ----------- | ----------- |
+
+ contracts/smart-contract-wallet/common/Enum.sol | 4
+ contracts/smart-contract-wallet/libs/MultiSend.sol | 35
+ contracts/smart-contract-wallet/libs/MultiSendCallOnly.sol | 30
+
+
 
 ## Out of scope
 
-Any files not listed above should be considered out of scope and assumed to be bug free. For instance, when `LiquidityPool.depositAndCall()` is called, a call to LiquidityProviders is made to update the current liquidity. This contract has been previously audited and thus should be considered to be bug free for the purposes of this audit and thus out of scope.
-
-In addition, for Hyphen we request that the wardens focus on auditing the `depositAndCall()` and `sendFundsToUserFromCCMP()` functions (and any functions called by them under the scope).
+Any files not listed above should be considered out of scope and assumed to be bug free. 
 
 ## Scoping Details 
 ```
@@ -175,43 +196,26 @@ In addition, for Hyphen we request that the wardens focus on auditing the `depos
 ```
 
 # Tests
-Clone the repository: `git clone git@github.com:code-423n4/2022-12-biconomy.git`
+Clone the repository: `git clone git@github.com:code-423n4/2023-01-biconomy.git`
 
-## CCMP Contracts
+## SCW Contracts
 ```
 # Setup
-cd ccmp-contracts
+cd scw-contracts
 yarn
 
 # Environment
-# The only required key for local testing is the METADEPLOYER_PRIVATE_KEY, set it to an arbitrary private key
+# Do add the RPC URLs and Block explorer API keys for running scripts to deploy on test networks
 cp .env.example .env 
 
-# Compile the contracts
-yarn compile
-
-# Run the tests
-yarn test
-
-# Run coverage
-yarn coverage
-```
-
-## Hyphen Contracts
-```
-# Setup
-cd hyphen-contract
-yarn
-
-# Environment
-cp .env.example .env 
+# Create a .secret file with your mnemonic. walletUtils.js picks mnemonic from here and creates accountts for hardhat tasks
 
 # Compile the contracts
-yarn compile
+npx hardhat compile
 
 # Run the tests
-yarn test
+npx hardhat test
 
 # Run coverage
-yarn coverage
+npx hardhat coverage
 ```
