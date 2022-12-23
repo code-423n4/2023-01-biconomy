@@ -41,7 +41,7 @@ salt consists of _owner and _index. _entryPoint and _handler are required to ini
 #### SmartAccount.sol (332 sloc)
 Base implementation contract for smart wallet
 reference 1 : https://docs.gnosis-safe.io/contracts
-reference 2 : https://github.com/eth-infinitism/account-abstraction/blob/develop/contracts/samples/SimpleWallet.sol
+reference 2 : https://github.com/eth-infinitism/account-abstraction/blob/develop/contracts/samples/SimpleAccount.sol
 notes: 
 1) reverting methods are used for gas estimations
 2) transactions happen via EOA signature by calling execTransaction or validateUserOp and execFromEntryPoint via entry point
