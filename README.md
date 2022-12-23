@@ -58,7 +58,7 @@ function deployCounterFactualWallet(address _owner, address _entryPoint, address
 
 Base implementation contract for smart wallet
 reference 1 : <https://docs.gnosis-safe.io/contracts>
-reference 2 : <https://github.com/eth-infinitism/account-abstraction/blob/develop/contracts/samples/SimpleWallet.sol>
+reference 2 : <https://github.com/eth-infinitism/account-abstraction/blob/develop/contracts/samples/SimpleAccount.sol>
 notes:
 
 1) reverting methods are used for gas estimations
