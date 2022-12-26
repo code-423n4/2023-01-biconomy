@@ -302,6 +302,17 @@ describe("EntryPoint", function () {
       ).to.revertedWith("AA20 account not deployed");
     });
 
+    it("should revert on oog if not enough verificationGas", async () => {
+      const op = await fillAndSign(
+        { sender: account.address, verificationGasLimit: 1000 },
+        accountOwner,
+        entryPoint
+      );
+      await expect(
+        entryPoint.callStatic.simulateValidation(op)
+      ).to.revertedWith("AA23 reverted (or OOG)");
+    });
+
     it("should succeed if validateUserOp succeeds", async () => {
       const op = await fillAndSign(
         { sender: account1.address },
@@ -356,6 +367,62 @@ describe("EntryPoint", function () {
       ).to.revertedWith("gas values overflow");
     });
 
+    it("should fail creation for wrong sender", async () => {
+      const op1 = await fillAndSign(
+        {
+          initCode: getAccountInitCode(
+            accountOwner1.address,
+            simpleAccountFactory
+          ),
+          sender: "0x".padEnd(42, "1"),
+          verificationGasLimit: 3e6,
+        },
+        accountOwner1,
+        entryPoint
+      );
+      await expect(
+        entryPoint.callStatic.simulateValidation(op1)
+      ).to.revertedWith("AA14 initCode must return sender");
+    });
+
+    it("should report failure on insufficient verificationGas (OOG) for creation", async () => {
+      const initCode = getAccountInitCode(
+        accountOwner1.address,
+        simpleAccountFactory
+      );
+      const sender = await entryPoint.callStatic
+        .getSenderAddress(initCode)
+        .catch((e) => e.errorArgs.sender);
+      const op0 = await fillAndSign(
+        {
+          initCode,
+          sender,
+          verificationGasLimit: 5e5,
+          maxFeePerGas: 0,
+        },
+        accountOwner1,
+        entryPoint
+      );
+      // must succeed with enough verification gas.
+      await expect(
+        entryPoint.callStatic.simulateValidation(op0, { gasLimit: 1e6 })
+      ).to.revertedWith("SimulationResult");
+
+      const op1 = await fillAndSign(
+        {
+          initCode,
+          sender,
+          verificationGasLimit: 1e5,
+          maxFeePerGas: 0,
+        },
+        accountOwner1,
+        entryPoint
+      );
+      await expect(
+        entryPoint.callStatic.simulateValidation(op1, { gasLimit: 1e6 })
+      ).to.revertedWith("AA13 initCode failed or OOG");
+    });
+
     it("should succeed for creating an account", async () => {
       const sender = await getAccountAddress(
         accountOwner1.address,
@@ -377,6 +444,31 @@ describe("EntryPoint", function () {
       await entryPoint.callStatic
         .simulateValidation(op1)
         .catch(simulationResultCatch);
+    });
+
+    it("should not call initCode from entrypoint", async () => {
+      // a possible attack: call an account's execFromEntryPoint through initCode. This might lead to stolen funds.
+      const { proxy: account } = await createAccount(
+        ethersSigner,
+        await accountOwner.getAddress(),
+        entryPoint.address
+      );
+      const sender = createAddress();
+      const op1 = await fillAndSign(
+        {
+          initCode: hexConcat([
+            account.address,
+            account.interface.encodeFunctionData("execute", [sender, 0, "0x"]),
+          ]),
+          sender,
+        },
+        accountOwner,
+        entryPoint
+      );
+      const error = await entryPoint.callStatic
+        .simulateValidation(op1)
+        .catch((e) => e);
+      expect(error.message).to.match(/initCode failed or OOG/, error);
     });
 
     it("should not use banned ops during simulateValidation", async () => {
@@ -601,6 +693,33 @@ describe("EntryPoint", function () {
         );
         await calcGasUsage(rcpt, entryPoint, beneficiaryAddress);
       });
+
+      it("should report failure on insufficient verificationGas after creation", async () => {
+        const op0 = await fillAndSign(
+          {
+            sender: account.address,
+            verificationGasLimit: 5e5,
+          },
+          accountOwner,
+          entryPoint
+        );
+        // must succeed with enough verification gas
+        await expect(
+          entryPoint.callStatic.simulateValidation(op0)
+        ).to.revertedWith("SimulationResult");
+
+        const op1 = await fillAndSign(
+          {
+            sender: account.address,
+            verificationGasLimit: 10000,
+          },
+          accountOwner,
+          entryPoint
+        );
+        await expect(
+          entryPoint.callStatic.simulateValidation(op1)
+        ).to.revertedWith("AA23 reverted (or OOG)");
+      });
     });
 
     describe("create account", () => {
@@ -609,6 +728,27 @@ describe("EntryPoint", function () {
       }
       let createOp: UserOperation;
       const beneficiaryAddress = createAddress(); // 1
+
+      it("should reject create if sender address is wrong", async () => {
+        const op = await fillAndSign(
+          {
+            initCode: getAccountInitCode(
+              accountOwner.address,
+              simpleAccountFactory
+            ),
+            verificationGasLimit: 2e6,
+            sender: "0x".padEnd(42, "1"),
+          },
+          accountOwner,
+          entryPoint
+        );
+
+        await expect(
+          entryPoint.callStatic.handleOps([op], beneficiaryAddress, {
+            gasLimit: 1e7,
+          })
+        ).to.revertedWith("AA14 initCode must return sender");
+      });
 
       it("should reject create if account not funded", async () => {
         const op = await fillAndSign(
@@ -1077,6 +1217,27 @@ describe("EntryPoint", function () {
           counter.address,
           0,
           count.data!
+        );
+      });
+
+      it("should fail with nonexistent paymaster", async () => {
+        const pm = createAddress();
+        const op = await fillAndSign(
+          {
+            paymasterAndData: pm,
+            callData: accountExecFromEntryPoint.data,
+            initCode: getAccountInitCode(
+              account2Owner.address,
+              simpleAccountFactory
+            ),
+            verificationGasLimit: 3e6,
+            callGasLimit: 1e6,
+          },
+          account2Owner,
+          entryPoint
+        );
+        await expect(entryPoint.simulateValidation(op)).to.revertedWith(
+          '"AA30 paymaster not deployed"'
         );
       });
 

@@ -157,7 +157,7 @@ Relevant missing test cases in this repo can be found here : <https://github.com
 
 | Contract | SLoC | Purpose | Libraries used |
 | ----------- | ----------- | ----------- | ----------- |
-contracts/smart-contract-wallet/aa-4337/core/EntryPoint.sol | 344
+contracts/smart-contract-wallet/aa-4337/core/EntryPoint.sol | 350
 contracts/smart-contract-wallet/aa-4337/core/SenderCreator.sol | 16
 contracts/smart-contract-wallet/aa-4337/core/StakeManager.sol | 76
 contracts/smart-contract-wallet/aa-4337/interfaces/IPaymaster.sol | 12
@@ -241,5 +241,5 @@ npx hardhat compile
 npx hardhat test
 
 # Run coverage
-npx hardhat coverage
+yarn coverage
 ```
