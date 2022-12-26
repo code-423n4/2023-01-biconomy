@@ -241,5 +241,5 @@ npx hardhat compile
 npx hardhat test
 
 # Run coverage
-npx hardhat coverage
+yarn coverage
 ```
