@@ -1,0 +1,1485 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q1-2023 / biconomy-jan04
+==============================================================
+
+[01/03/2023 13:44] paroxysm9999 (pinned)
+👋 Hello and welcome to the contest channel for the $60,500 **Biconomy - Smart contract Wallet** contest!
+
+📆 Contest opens 01/04/2023 20:00 (20:00 UTC) and runs through 01/09/2023 20:00 (20:00 UTC) (5 days).
+
+Please give a warm welcome to the Biconomy team, particularly @livingrock7 & @__acidicHydrogen__, who will be available for questions either here in the channel or via DM.
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this contest, consider enabling notifications for this channel. 🐺 ⏰
+
+Contest Page: https://code4rena.com/contests/2023-01-biconomy-smart-contract-wallet-contest
+
+{Embed}
+https://code4rena.com/contests/2023-01-biconomy-smart-contract-wallet-contest
+Code4rena Biconomy - Smart Contract Wallet contest
+$60,500 USDC
+4 January 2023—9 January 2023
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/C4-banner-7C19B.png
+
+{Reactions}
+❤️‍🔥 (26) 
+
+[01/03/2023 16:40] itsmetechjay
+Pinned a message.
+
+
+[01/04/2023 02:39] thekmj
+Is this "Biconomy - Smart Contract Wallet" or "Biconomy - Bridge and Call", the given link is not leading anywhere
+
+
+[01/04/2023 09:44] .livingrock
+Hello all!
+
+{Reactions}
+👋 (11) 
+
+[01/04/2023 10:02] paroxysm9999
+Thanks!
+
+
+[01/04/2023 18:26] dicethedev
+Let's give it a shot
+
+
+[01/04/2023 18:28] dicethedev
+@livingrock7 and @__acidicHydrogen__ you are welcome
+
+
+[01/04/2023 20:16] thepicodes
+**Automated Findings:** https://gist.github.com/Picodes/0a53b4abfc71e0b9998e8b09aa283fb3
+
+{Reactions}
+thankyou (5) 
+
+[01/04/2023 20:27] supernovahs
+Excited for this contest AA
+
+{Reactions}
+hi5 (3) 
+
+[01/04/2023 20:34] 2997ms
+```$ npx hardhat compile
+An unexpected error occurred:
+
+Error: invalid mnemonic``` Does anyone have some ideas?
+
+
+[01/04/2023 20:39] itsmetechjay (pinned)
+Wardens, please note that the automated findings output has been posted and added to pinned posts. These are considered publicly known issues and are not eligible for awards.
+
+**Automated findings: **
+https://gist.github.com/Picodes/0a53b4abfc71e0b9998e8b09aa283fb3
+
+This will also be linked in the contest README file shortly.
+
+
+[01/04/2023 20:39] itsmetechjay
+Pinned a message.
+
+
+[01/04/2023 20:46] allarious
+Did you try making a .secret file and putting in a test mnemonic?
+
+
+[01/04/2023 20:47] 2997ms
+Yes, I did create a .secret file and put 12 words in this file
+
+
+[01/04/2023 20:50] allarious
+I used the test mnemonic provided by hardhat and it worked fine https://hardhat.org/hardhat-network/docs/reference
+
+{Embed}
+https://hardhat.org/hardhat-network/docs/reference
+Reference | Ethereum development environment for professionals by N...
+Ethereum development environment for professionals by Nomic Foundation
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/card-1C40E.jpg
+
+
+[01/04/2023 20:52] 2997ms
+It works, thank you !
+
+{Reactions}
+hi5 
+
+[01/04/2023 21:58] adarji
+getting error when I run below command
+
+yarn hardhat test
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/Screencast_from_2023-01-04_045649_PM-55A72.webm
+
+{Reactions}
+same 
+
+[01/04/2023 22:02] sovaslava9
+- If you have a public code repo, please share it here:  https://github.com/bcnmy/scw-contracts/tree/master-c4-readys
+
+
+[01/04/2023 22:02] sovaslava9
+git clone https://github.com/bcnmy/scw-contracts/tree/master-c4-readys
+Cloning into 'master-c4-readys'...
+fatal: repository 'https://github.com/bcnmy/scw-contracts/tree/master-c4-readys/' not found
+
+
+[01/04/2023 22:04] sovaslava9
+I found repo.clicked on button View repo)
+
+
+[01/04/2023 22:04] gz627
+try change filename from  test/smart-wallet/testUtils.ts to test/smart-wallet/testutils.ts
+
+{Reactions}
+👍 (3) 
+
+[01/04/2023 22:07] gz627
+i had the same issue and solved by change the filename
+
+{Reactions}
+C4Keycap 
+
+[01/04/2023 22:09] myfdsyours
+move aa-core/testutils.ts to smart-wallet folder
+
+
+[01/04/2023 22:18] allarious
+The repo's address is actually https://github.com/bcnmy/scw-contracts/tree/master-c4-ready/. There is an extra "s" appended to the end in the docs.
+
+{Embed}
+https://github.com/bcnmy/scw-contracts/tree/master-c4-ready/
+GitHub - bcnmy/scw-contracts at master-c4-ready
+SCW contracts for Biconomy Smart Account. Contribute to bcnmy/scw-contracts development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/scw-contracts-33DD2
+
+
+[01/04/2023 22:21] rotcivegaf
+add in the [contest details](https://code4rena.com/contests/2023-01-biconomy-smart-contract-wallet-contest):
+"The C4audit output for the contest can be found [here](add link to report) within an hour of contest opening."
+
+
+[01/04/2023 22:25] itsmetechjay
+It has been linked.  Are you seeing something different?
+
+{Reactions}
+👍 
+
+[01/04/2023 22:30] rotcivegaf
+F5 and works!
+
+{Reactions}
+hi5 🎉 
+
+[01/04/2023 22:51] codecipher9
+is the contest scope all the contracts in the scope table or the list given before ?
+
+
+[01/05/2023 00:14] lef8139
+or npx mnemonics
+
+{Reactions}
+👍 (3) 
+
+[01/05/2023 04:30] sathish9098kumar
+why when i try to compile show like new project dialogue  ?
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/image-9B28A.png
+
+
+[01/05/2023 04:35] codeislight
+you have to run :
+cd .\scw-contracts\
+
+
+[01/05/2023 05:01] sathish9098kumar
+okay
+
+
+[01/05/2023 05:03] 0xtinder
+S/O to the biconomy team for excellent docs, far and away better than most protocols
+
+
+[01/05/2023 05:09] sathish9098kumar
+what is the problem ?
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/image-9B585.png
+
+
+[01/05/2023 05:18] 0xtinder
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/image-B975A.png
+
+
+[01/05/2023 05:35] sathish9098kumar
+okay
+
+
+[01/05/2023 05:39] sathish9098kumar
+what is meant by mnemonic ? what i need to enter inside the .secret file
+
+
+[01/05/2023 06:36] sathish9098kumar
+please share that code here. I tried but not working
+
+
+[01/05/2023 06:50] sathish9098kumar
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/image-262D8.png
+
+
+[01/05/2023 06:57] sathish9098kumar
+please any one reply this with solutions
+
+
+[01/05/2023 06:58] bit.surfer
+https://letmegooglethat.com/?q=crypto+mnemonic
+
+{Embed}
+https://letmegooglethat.com/?q=crypto+mnemonic
+Let Me Google That
+For all those people that find it more convenient to bother you with their question than to google it for themselves.
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/android-chrome-192x192-28547.png
+
+
+[01/05/2023 07:07] sathish9098kumar
+So our self we can put 12 or mnemonics right ?
+
+
+[01/05/2023 07:22] sathish9098kumar
+Now working thank you
+
+
+[01/05/2023 09:15] zapaz
+you can use ethersjs to create random mnemonic :
+```javascript
+const ethers = require("ethers");
+const account = ethers.Wallet.createRandom();
+console.log(account._mnemonic().phrase);
+```
+
+{Reactions}
+👍 
+
+[01/05/2023 09:42] rickardlarsson6
+Worked for me as well
+
+
+[01/05/2023 11:18] .livingrock
+Hi were you able to get past through this?
+
+
+[01/05/2023 11:20] .livingrock
+do tag me for better visibility
+
+
+[01/05/2023 11:21] sathish9098kumar
+I have another doubt mnemonic means our wallet seed phrase?
+
+
+[01/05/2023 11:22] sathish9098kumar
+@livingrock7 now it's working
+
+
+[01/05/2023 11:25] .livingrock
+yes, you can also just put "test test test test test test test test test test test junk" 
+cat scw-contracts/.secret
+
+
+[01/05/2023 11:25] sathish9098kumar
+In my case when I put my seed phrase in .secret it's working normal
+
+{Reactions}
+👍 
+
+[01/05/2023 11:25] .livingrock
+as it's only needed for testnet deployment scripts
+
+
+[01/05/2023 11:26] sathish9098kumar
+I tried this but not working
+
+
+[01/05/2023 11:28] sathish9098kumar
+I think that double quotes may be a problem. I will try now without double quotes
+
+
+[01/05/2023 11:28] .livingrock
+can you give me steps to reproduce.
+
+
+[01/05/2023 11:28] .livingrock
+yes
+
+
+[01/05/2023 11:28] .livingrock
+hardhat compile task and yarn coverage should work fine
+
+
+[01/05/2023 11:29] sathish9098kumar
+Yes all working fine
+
+
+[01/05/2023 12:02] csanuragjain
+@livingrock7 Dmed few question, can you please help
+
+
+[01/05/2023 12:19] .livingrock
+replied
+
+
+[01/05/2023 12:41] supernovahs
+Regarding the MultiCall
+https://github.com/code-423n4/2023-01-biconomy/blob/53c8c3823175aeb26dee5529eeefa81240a406ba/scw-contracts/contracts/smart-contract-wallet/libs/MultiSendCallOnly.sol#L34
+What exactly is operation?
+It says the first 1 bytes is the operation . This is then used to know if delegate call is used or not . 
+ I need some explaining in simple words . 🙏
+
+{Embed}
+https://github.com/code-423n4/2023-01-biconomy/blob/53c8c3823175aeb26dee5529eeefa81240a406ba/scw-contracts/contracts/smart-contract-wallet/libs/MultiSendCallOnly.sol
+2023-01-biconomy/MultiSendCallOnly.sol at 53c8c3823175aeb26dee5529e...
+Contribute to code-423n4/2023-01-biconomy development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/ab893b13-b6c3-44e4-ba09-80b6dfd60eb3-92770
+
+
+[01/05/2023 13:19] lirios.
+In the original multiSend comments: 
+- operation as a uint8 with 0 for a call or 1 for a delegatecall (=> 1 byte),
+and that one had 
+                switch operation
+                    case 0 {
+                        success := call(gas(), to, value, data, dataLength, 0, 0)
+                    }
+                    case 1 {
+                        success := delegatecall(gas(), to, data, dataLength, 0, 0)
+                    }
+
+In this MultiSendCallOnly the delegatecall is disabled
+https://github.com/code-423n4/2023-01-biconomy/blob/53c8c3823175aeb26dee5529eeefa81240a406ba/scw-contracts/contracts/smart-contract-wallet/libs/MultiSendCallOnly.sol#L51
+
+{Embed}
+https://github.com/code-423n4/2023-01-biconomy/blob/53c8c3823175aeb26dee5529eeefa81240a406ba/scw-contracts/contracts/smart-contract-wallet/libs/MultiSendCallOnly.sol
+2023-01-biconomy/MultiSendCallOnly.sol at 53c8c3823175aeb26dee5529e...
+Contribute to code-423n4/2023-01-biconomy development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/ab893b13-b6c3-44e4-ba09-80b6dfd60eb3-92770
+
+
+[01/05/2023 13:33] supernovahs
+ok So we are assuming txs are encoded in a specific manner
+
+{Reactions}
+👍 
+
+[01/05/2023 13:39] he1m
+@livingrock7 Dmed you! Thanks.
+
+{Reactions}
+✅ 
+
+[01/05/2023 14:43] zaskoh#2073
+@livingrock7 dmed a question. Thanks 🙂
+
+{Reactions}
+✅ 
+
+[01/05/2023 14:47] csanuragjain
+Thanks, need help with a few more. Dmed you 🙂
+
+{Reactions}
+✅ 
+
+[01/05/2023 15:23] taek.eth
+@livingrock7 dmed
+
+{Reactions}
+✅ 
+
+[01/05/2023 15:35] supernovahs
+@livingrock7 dmed
+
+{Reactions}
+✅ 
+
+[01/05/2023 16:07] bahoz.eth
+is not 2800 LoC too much for 5 days ?
+
+
+[01/05/2023 16:24] koolexc
+@livingrock7 DMed
+
+{Reactions}
+✅ 
+
+[01/05/2023 16:45] trustminimised
+@livingrock7 Sorry for the potentially silly question, but Is the Relayer talked about in the documentation a purely javascript construct? Just some code to create the transaction batches and handle some business logic?
+
+{Reactions}
+✅ 
+
+[01/05/2023 17:03] txt_malw4323
+Someone solved the slither compilations errors of deep stack?
+
+
+[01/05/2023 18:42] stermi
+I was reading the EIP but I'm not very sure to have understood correctly is the **EntryPoint** a global contract not tightly connected with the user wallet or what?
+
+I mean, is a contract that has been created by the owner of the wallet? or at least, is it in the case of Biconomy?
+
+
+[01/05/2023 18:43] supernovahs
+Every chain will have one entry point contract , this will serve everyone
+
+{Reactions}
+👍 
+
+[01/05/2023 18:43] supernovahs
+Like WETH
+
+
+[01/05/2023 18:43] stermi
+who's the owner of the entrypoint?
+
+
+[01/05/2023 18:43] supernovahs
+No one I guess
+
+
+[01/05/2023 19:04] madalad
+did this get answered ?
+
+
+[01/05/2023 19:38] malfurionwhitehat
+hi all, I'm very excited to participate in this contest, even if I don't find anything. LFG EIP-4337
+
+{Reactions}
+🔥 (3) 
+
+[01/05/2023 20:26] .livingrock
+replied to everyone on dms! (in case I missed please ping again or tag me here) let me respond on threads for this channel also. I will be available again in 10-11 hours
+
+
+[01/05/2023 20:28] .livingrock
+yes, no one. I can share more resources on EIP4337.
+there is also infinitism discord https://discord.gg/KStTgsKd
+
+
+[01/05/2023 20:29] .livingrock
+relayer is just an EOA with some gas which can dispatch raw transactions on chain which have valid signatures.
+
+
+[01/05/2023 20:30] .livingrock
+yes you can trace construction from utils through test cases.
+
+
+[01/05/2023 20:34] gz627
+what is the difference between SmartAccountNoAuth.sol and SmartAccount.sol?
+
+
+[01/05/2023 20:39] sovaslava9
+SmartAccountNoAuth.sol  not in scope, as I know..
+
+{Reactions}
+👆🏼 👍 (3) 
+
+[01/05/2023 22:16] 0xtraub
+im learning a ton about account abstraction on this contest but damn if it isnt a tough codebase.
+
+
+[01/05/2023 22:41] sovaslava9
+I found only gas optimization 😄
+
+{Reactions}
+👍 
+
+[01/05/2023 23:29] 0xtraub
+i got some low hanging fruit that may not be anything at all. an interesting challenge for sure but might have bittten off more than I can chew. definitely helping my methodology though and will be interesting to see the results
+
+{Reactions}
+👀 
+
+[01/06/2023 06:22] supernovahs
+Delete the message bro, you can't talk about vulnerabilities before contest is over😄
+
+{Reactions}
+👍 
+
+[01/06/2023 07:03] sinarette
+@livingrock7 Are the cross-chain features not in scope? I didn't go through the whole code yet, but it seems so at a glance. Am I right?
+
+
+[01/06/2023 07:33] foufrix
+seems a lot yes, we better hurry 🚀
+
+
+[01/06/2023 07:44] __acidichydrogen__
+yup, those would be covered in a future round of audit
+
+
+[01/06/2023 07:49] __acidichydrogen__
+Started a thread.
+
+
+[01/06/2023 07:53] matin6517
+Hello dear friend,
+I want to know more about the proxy and implementation system of your code.
+It's somehow a mixed form of ERC1967 and ERC1167.
+It's clear that the new proxies are created and initialized. But the proxy and the fixed implementation contracts are not clear.
+Could you please describe more about the implementation?
+
+
+[01/06/2023 07:56] sinarette
+Thank you 😀
+
+{Reactions}
+👍 (2) 
+
+[01/06/2023 08:01] rickardlarsson6
+Same here, only found some non-critical and gas for the moment 🫠
+
+{Reactions}
+👍 
+
+[01/06/2023 08:24] __acidichydrogen__
+Started a thread.
+
+
+[01/06/2023 10:23] malfurionwhitehat
+what is the purpose of `SmartAccountFactory.isAccountExist` ?
+
+
+[01/06/2023 11:30] gz627
+In the `SmartAccount` contract, there is a function:
+```js
+    function _validateSignature(UserOperation calldata userOp, bytes32 userOpHash, address)
+    internal override virtual returns (uint256 deadline) {
+        bytes32 hash = userOpHash.toEthSignedMessageHash();
+        //ignore signature mismatch of from==ZERO_ADDRESS (for eth_callUserOp validation purposes)
+        // solhint-disable-next-line avoid-tx-origin
+        require(owner == hash.recover(userOp.signature) || tx.origin == address(0), "account: wrong signature");
+        return 0;
+    }
+```
+when would `tx.origin == address(0)` happen?
+
+{Reactions}
+👍 (3) 
+
+[01/06/2023 12:42] taek.eth
+```
+        //ignore signature mismatch of from==ZERO_ADDRESS (for eth_callUserOp validation purposes)
+```
+this happens when you do eth_call and possibly same with eth_callUserOp(which is not implemented yet)
+
+
+[01/06/2023 12:42] taek.eth
+I assume that's for bypassing the validateSignature when validating the UserOp while bundling the tx
+
+
+[01/06/2023 12:49] gz627
+Thanks! where is eth_call initiated? I couldn't identify it.
+
+
+[01/06/2023 12:56] taek.eth
+Thats basically offchain so it’s not in the scope
+
+{Reactions}
+👍 
+
+[01/06/2023 12:57] taek.eth
+Its a rpc
+
+
+[01/06/2023 12:57] taek.eth
+https://www.quicknode.com/docs/ethereum/eth_call
+
+{Embed}
+https://www.quicknode.com/docs/ethereum/eth_call
+eth_call - Ethereum RPC method documentation - QuickNode
+Top projects & businesses trust QuickNode for fast, reliable Web3 infrastructure. Instantly access 16 chains across a global node network, plus tools and APIs to help you build & scale high-quality blockchain applications!
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/docs-7463e4f17ffcd2db610004ce15a4f0f7af370-50810.png
+
+
+[01/06/2023 12:59] Franfran#5067
+What's that `SmartAccountNoAuth` contract ? It's not listed on the contest and looks kinda similar to `SmartAccount`
+
+
+[01/06/2023 13:40] sovaslava9
+it has special condition (in require)  require(_signer == owner || true, "INVALID_SIGNATURE");  I think its for internal tests
+
+{Reactions}
+👍 (2) 
+
+[01/06/2023 14:01] gz627
+Whom I can DM?
+
+
+[01/06/2023 15:25] Franfran#5067
+Ty
+
+
+[01/06/2023 16:30] ladboy233
+Are these two contract already audited?
+
+
+[01/06/2023 16:30] ladboy233
+EntryPoint.sol (344 sloc)
+EIP4337 Entry Point contract (https://blog.openzeppelin.com/eth-foundation-account-abstraction-audit/)
+
+StakeManager.sol (76 sloc)
+Stake Manager for wallet and paymaster deposits / stakes
+https://blog.openzeppelin.com/eth-foundation-account-abstraction-audit/
+
+{Embed}
+OpenZeppelin Security
+https://blog.openzeppelin.com/eth-foundation-account-abstraction-audit/
+EIP-4337 - Ethereum Account Abstraction Audit - OpenZeppelin blog
+The Ethereum Foundation asked us to review the EIP-4337 specification and a reference implementation. We looked at the code and now publish our results.
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/ETH-Foundation-Audit-2-F06EB.png
+
+
+[01/06/2023 17:47] malfurionwhitehat
+Hey, are contract signatures supported on the Biconomy Smart Account wallet?
+
+
+[01/06/2023 18:50] .livingrock
+yes, ISignatureValidator.sol supports EIP1271
+
+{Reactions}
+✅ 
+
+[01/06/2023 18:51] .livingrock
+they are audited once but on the prior versions. it is in scope for this audit
+infinitism will be doing another audit too for latest updated versions
+
+
+[01/06/2023 18:51] .livingrock
+me!
+
+
+[01/06/2023 18:52] .livingrock
+yes it's only used for gas estimation. using eth_call state override set
+
+
+[01/06/2023 18:53] .livingrock
+True, this is obsolete in the latest version. https://github.com/bcnmy/scw-contracts/pull/19/files
+
+{Embed}
+https://github.com/bcnmy/scw-contracts/pull/19/files
+init rebase with 0.4.0 account-abstraction contracts by livingrockr...
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/90545960-8E542
+
+
+[01/06/2023 18:55] .livingrock
+oh nice! looking forward to it
+
+
+[01/06/2023 18:57] .livingrock
+looking forward to it!
+
+
+[01/06/2023 18:59] .livingrock
+it's trivial. one can read from factory state whether the wallet was deployed from this factory or now. but there are other ways like events tracked by indexer and checking provider.getCode on wallet address
+
+{Reactions}
+✅ 
+
+[01/06/2023 19:09] ladboy233
+Is the protocol plans to go multi-chain?
+
+
+[01/06/2023 19:09] ladboy233
+or only the ethereum mainnet.
+
+
+[01/06/2023 19:15] allarious
+I think it is supposed to be chain-agnostic for the users but its out of scope for this contest.
+
+{Reactions}
+👍 
+
+[01/06/2023 19:17] malfurionwhitehat
+thanks
+
+
+[01/06/2023 19:58] malfurionwhitehat
+If I understand correctly, the purpose of the `VerifyingSingletonPaymaster` is a singleton paymaster that which can be used by different `paymasterId`s. 
+
+My question is: what is the process of obtainin a `paymasterId`? Is this something that will be done on the Biconomy platform? Will these be trusted paymasters provided by Biconomy, or each registered user/dapp will get a different paymaster? Where can I get more information about the different `paymasterId`s?
+
+
+[01/06/2023 20:01] malfurionwhitehat
+Also, can you give more details about the verification process of the trusted external signer?
+The README states that:
+> The calling user must pass the UserOp to that external signer first, which performs whatever off-chain verification before signing the UserOp.
+Can you give more detail about the "whatever off-chain verification" will be?
+
+
+[01/06/2023 20:06] .livingrock
+it will be done on the biconomy paymaster dashboard. each dapp will have it's own paymaster id and common singleton paymaster
+
+{Reactions}
+✅ 
+
+[01/06/2023 20:07] .livingrock
+so offchain-verification can be checking conditions like if user holds x nft, if destination contract is whitelisted, if already x MATIC has been sponsored for this wallet etc. we can this conditional gasless. our off chain service will check and verifying signer will then sign the signature to be allowed to passed as paymasterAndData in the final userOp
+
+{Reactions}
+✅ 
+
+[01/06/2023 22:34] joestakey#0256
+Hi, I have a question regarding the contest scope:
+In this section https://github.com/code-423n4/2023-01-biconomy#smart-contracts, it is said
+```
+All the contracts in this section are to be reviewed. Any contracts not in this list are to be ignored for this contest.
+```
+14 contracts are in this section
+
+But in the Scope section https://github.com/code-423n4/2023-01-biconomy#scope, there are a lot more contracts.
+Which one is the correct scope?
+
+
+[01/07/2023 02:50] aviggiano
+I think the "scope section" is just a copy/paste auto generated entry. We should follow the first guidance I think
+
+{Reactions}
+👍 
+
+[01/07/2023 02:51] aviggiano
+For example aa-4337 is a directory with all the files from the EIP implementation repo
+
+
+[01/07/2023 02:52] aviggiano
+So it doesn't make sense to include it in the audit
+
+
+[01/07/2023 12:19] jayusjay
+Can there be multiple entry point  contracts? That is, each smart contract wallet could have it's own entry point or there is one central entryPoint.sol per chain?
+
+
+[01/07/2023 12:29] malfurionwhitehat
+Not exactly.
+There is only 1 entrypoint on the chain at first, but there might be multiple later due to bugfixes. 
+https://discord.com/channels/892780451570270219/892780453940056066/1060948376729948180
+
+
+[01/07/2023 12:30] jayusjay
+I do not have access.
+What was their response?
+
+
+[01/07/2023 12:31] jayusjay
+Alright thanks anon.
+
+
+[01/07/2023 12:31] malfurionwhitehat
+https://discord.gg/KStTgsKd
+
+{Reactions}
+👍 
+
+[01/07/2023 12:32] malfurionwhitehat
+> Only during upgrades, for transitioning to a new EP.  There is only one current EP on each chain, but bundlers will need to support older versions to allow accounts to transition to the new one.  The first EP returned by this RPC is supposed to be the canonical one.  The other ones are supported to assist transition.
+> 
+> The account only needs to know about one.  It can have a function that sets it to a new version (callable only by the account itself, via the existing EntryPoint).  Or in the case of a proxy implementation, the implementation can hardcode the current EP address (to save gas on SLOADs during each UserOp), and when EP is updated the wallet dev will deploy a new implementation hardcoding the new address, and users will upgrade their proxy to use the new implementation.
+
+
+[01/07/2023 13:15] romandvo
+@livingrock7 dmed
+
+{Reactions}
+✅ 
+
+[01/07/2023 13:16] supernovahs
++1
+
+{Reactions}
+✅ 
+
+[01/07/2023 13:45] malfurionwhitehat
+hey, can someone explain why `SmartAccount.nonces` is a 2D-mapping? what's the purpose of `batchId`? Also, what's the meaning of "space", referred throughout the code as the batch id?
+
+{Reactions}
+➕ 
+
+[01/07/2023 16:10] .livingrock
+nonce space = batch Id
+default batchId used is 0
+
+Yes, it can be used to send parallel valid transactions without conflicting nonces
+for more context on 2D nonces
+Search 'Batched Transactions / 2D Nonces' on this page
+https://medium.com/biconomy/moving-forward-save-your-eth-pay-gas-in-erc20-tokens-7fcd9969d9ff
+
+user / dapp can send a custom batchId
+so imagine sending multiple transactions with incremental batchIds and contract will choose and validate nonce for that batchId nonce space
+
+{Embed}
+https://medium.com/biconomy/moving-forward-save-your-eth-pay-gas-in-erc20-tokens-7fcd9969d9ff
+Moving Forward, save your ETH. Pay gas in ERC20 tokens.
+This is a technical breakdown of how we enable Ethereum gas payments in ERC20 tokens for Biconomy Forward.
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/0%2AgsixFURw142wk3e8-68433.png
+
+{Reactions}
+✅ 
+
+[01/07/2023 16:13] .livingrock
+Thanks for putting this here
+
+
+[01/07/2023 16:14] .livingrock
+no it is part of the audit. listed contracts in the scope is clear
+
+
+[01/07/2023 16:15] .livingrock
+feel free to tag / dm me with contract name for any confusion
+
+
+[01/07/2023 17:20] acegawd
+DM @livingrock7
+
+{Reactions}
+🙏 
+
+[01/07/2023 17:39] .0xdave
+DMed @livingrock7
+
+{Reactions}
+✅ 
+
+[01/07/2023 20:47] gz627
+In `SmartAccount` contract, function `checkSignatures` verifies transactions signed by the contract owner and EIP1271 (refer to `require(ISignatureValidator(_signer).isValidSignature(data, contractSignature) == EIP1271_MAGIC_VALUE, "BSA024")`).
+
+My question is: what transactions will be signed by EIP1271? why? any examples? How does a contract sign a transaction as it has no private key?
+
+
+[01/07/2023 21:52] rodrigoh0623
+The main reason behind this eip is so smart contract wallets (like gnosis safe and argent) are able to "sign" transactions for the dapps (so there is a general interface  to verify if the signatures are valid). 
+
+The interface is: 
+
+```
+function isValidSignature(
+    bytes32 _hash, 
+    bytes memory _signature)
+    public
+    view 
+    returns (bytes4 magicValue);
+```
+
+Basically you just pass a hash and the signatures, then it is the contract's job to make sure that the signatures are correct (belong to the owners) and return the magic value.
+
+The signatures are usually created offchain (through a regular EOA). Imagine you have a gnosis safe with a threshold of 2, both of those owners have a Trezor. The signatures would be generated offchain (you would sign the hash with the trezor) so then a Dapp like opensea can verify that the provided signatures are correct (by calling isValidSignature).
+
+* With a regular eoa the dapps or smart contracts just call ecrecover and get the address that signed the transaction, you can't do that with smart contract wallets so this is the way that they "sign".
+
+{Reactions}
+👍 (4) 
+
+[01/07/2023 21:56] gz627
+Thanks! So the actual signer is the EOA which is the owner of the SmartAccount wallet?
+
+
+[01/07/2023 21:57] rodrigoh0623
+Exactly but you can also have nested smart contract owners.  A gnosis safe can be one of the owners (or multiple) of another gnosis safe and so on ..
+
+{Reactions}
+👍 
+
+[01/07/2023 22:02] gz627
+Many thanks!
+
+
+[01/07/2023 23:43] amaechieth
+Hi, what does this line do in `VerifyingSingletonPaymaster.sol`:
+
+```
+(mode);
+```
+
+For context this is the function:
+
+```
+function _postOp(
+    PostOpMode mode,
+    bytes calldata context,
+    uint256 actualGasCost
+  ) internal virtual override {
+    (mode);
+    // (mode,context,actualGasCost); // unused params //@audit comment
+    PaymasterContext memory data = context.decodePaymasterContext();
+    address extractedPaymasterId = data.paymasterId;
+    paymasterIdBalances[extractedPaymasterId] -= actualGasCost;
+  }
+```
+
+
+[01/07/2023 23:54] Franfran#5067
+Probably to silence compiler warning about unused variable
+
+{Reactions}
+👍 
+
+[01/07/2023 23:55] amaechieth
+ahh makes sense, thanks
+
+
+[01/08/2023 05:24] chaduke3730
+which funtion/contract might call multisend()?https://github.com/code-423n4/2023-01-biconomy/blob/53c8c3823175aeb26dee5529eeefa81240a406ba/scw-contracts/contracts/smart-contract-wallet/libs/MultiSend.sol#L26
+
+{Embed}
+https://github.com/code-423n4/2023-01-biconomy/blob/53c8c3823175aeb26dee5529eeefa81240a406ba/scw-contracts/contracts/smart-contract-wallet/libs/MultiSend.sol
+2023-01-biconomy/MultiSend.sol at 53c8c3823175aeb26dee5529eeefa8124...
+Contribute to code-423n4/2023-01-biconomy development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/ab893b13-b6c3-44e4-ba09-80b6dfd60eb3-92770
+
+
+[01/08/2023 09:56] foufrix
+@livingrock7 dm sent !
+
+{Reactions}
+✅ 
+
+[01/08/2023 12:30] saksham#7993
+Anyone from the team available for a DM?
+
+{Reactions}
+✅ (2) 
+
+[01/08/2023 16:20] .livingrock
+it can be part of execTransaction _tx.data and _tx.to
+when you want to batch calls from smart account to multiple dapp contracts in single tx (like approve and swap)
+It can also be used directly to batch transactions (like wallet deployment on factory then execTransaction call on deployed wallet)
+
+
+[01/08/2023 18:50] chaduke3730
+thanks
+
+{Reactions}
+🙏 
+
+[01/08/2023 18:50] chaduke3730
+@livingrock7
+
+
+[01/08/2023 19:05] allarious
+@livingrock7 DMed, Thanks 😁
+
+{Reactions}
+✅ 
+
+[01/08/2023 21:27] allarious
+Do we assume that all off-chain checks by builders are done correctly?
+Is there a code that implements the checks listed in EIP-4337?
+
+
+[01/09/2023 08:15] .livingrock
+https://github.com/eth-infinitism/bundler
+
+https://github.com/eth-infinitism/bundler-spec-tests
+
+{Embed}
+https://github.com/eth-infinitism/bundler
+GitHub - eth-infinitism/bundler
+Contribute to eth-infinitism/bundler development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/bundler-31C36
+
+{Embed}
+https://github.com/eth-infinitism/bundler-spec-tests
+GitHub - eth-infinitism/bundler-spec-tests: Bundler specification t...
+Bundler specification test suites. Contribute to eth-infinitism/bundler-spec-tests development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/bundler-spec-tests-ED761
+
+{Reactions}
+👍 
+
+[01/09/2023 13:56] kartoonjoy
+Hi @AmanRaj
+
+
+[01/09/2023 18:21] acegawd
+DM @livingrock7
+
+
+[01/09/2023 19:59] jakeinc
+@zscole Having trouble submitting
+
+
+[01/09/2023 19:59] jakeinc
+It was prior to deadline
+
+
+[01/09/2023 20:00] jakeinc
+@0xean @Pierrick @Thunder Can anyone help me here?
+
+
+[01/09/2023 20:01] giovannidisiena
+I also had issues:/ needed to edit a submission but wasn’t able to
+
+
+[01/09/2023 20:02] C4
+**🚨 CONTEST ALERT**
+
+@🐺wardens The **Biconomy - Smart Contract Wallet **contest is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Keep an eye on #📢announcements for regular updates on how the contest is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a gardener if you have questions along the way!
+
+{Reactions}
+👍 (18) 🙏 (3) 
+
+[01/09/2023 20:03] jakeinc
+@🧦 sockdrawer | C4 Could you help with this?
+
+{Reactions}
+🙏 (2) 
+
+[01/09/2023 20:03] yongkiws
+https://code4rena.com/help
+
+{Reactions}
+👍 
+
+[01/10/2023 00:10] 0xdeadbeef0x
+Good luck and thanks for the clear docs and responses!
+
+{Reactions}
+🙏 
+
+[01/11/2023 12:12] rickardlarsson6
+Good luck everyone! Did my best 🔥
+
+
+[01/11/2023 13:07] mountxlover
+How many days it usually takes to get the results?
+
+
+[01/11/2023 13:17] 0xdeadbeef0x
+1-2 month
+
+{Reactions}
+👀 
+
+[01/13/2023 12:09] web3sec
+Hey Team, I submitted a few bugs on Biconomy contest, It seems to be closed. Will the reports reported will be available with proper statuses once Evaluated? How much time does it usually take to get updates on reported bugs?
+
+
+[01/17/2023 07:42] foufrix
+2 months from code4rena docs 🙂
+
+{Reactions}
+🙌🏻 (2) 
+
+[01/17/2023 23:24] wen_xu
+@__acidicHydrogen__ @livingrock7 can I DM any of you?
+
+
+[01/17/2023 23:31] .livingrock
+Yes
+
+
+[02/04/2023 14:49] rodrigoh0623
+Hi, any updates for this contest ?
+
+
+[02/05/2023 12:59] matin6517
+👀
+
+
+[02/05/2023 22:09] praise95
+👀
+
+
+[02/08/2023 17:42] haipls
+Hi, any updates for this contest ?
+
+
+[02/08/2023 18:05] ladboy233
+👀👀👀
+
+
+[02/08/2023 18:37] w0rr1or
+👀 👀
+
+
+[02/08/2023 18:50] matin6517
+👀
+
+{Reactions}
+👀 (2) 🏓 
+
+[02/09/2023 07:24] smit__rajput
+https://tenor.com/view/kill-stab-thinking-arya-got-gif-14033550
+
+{Embed}
+https://tenor.com/view/kill-stab-thinking-arya-got-gif-14033550
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/kill-stab-4A2CC.png
+
+
+[02/09/2023 07:33] matin6517
+I think Biconomy isn't in the judging phase, based on the announcements🤔
+
+
+[02/09/2023 08:29] ahmet5611
+https://www.youtube.com/watch?v=y4NlW43QNQQ
+
+{Embed}
+Nas - Topic
+https://www.youtube.com/watch?v=y4NlW43QNQQ
+Patience
+Provided to YouTube by Universal Music Group
+
+Patience · Nas & Damian "Jr. Gong" Marley
+
+Distant Relatives
+
+℗ 2010 Universal Republic Records, a division of UMG Recordings, Inc.
+
+Released on: 2010-05-18
+
+Producer: Stephen Marley
+Studio  Personnel, Recording  Engineer: Tim Harkins
+Studio  Personnel, Recording  Engineer: Marc Lee
+Studio  Personnel...
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/maxresdefault-D5E82.jpg
+
+{Reactions}
+😅 (2) 👍 ✌️ 
+
+[02/09/2023 23:12] xyzbtchunt
+Any update serr ??
+
+{Reactions}
+👀 (3) 
+
+[02/10/2023 15:12] ladboy233
+👁️
+
+{Reactions}
+🤷‍♂️ (6) 🤓 (4) 
+
+[02/12/2023 15:11] mountxlover
+Can someone tell me when we will receive the updates on this program?
+
+
+[02/12/2023 15:15] pavankv
+Maybe this week
+
+{Reactions}
+👀 (6) 
+
+[02/14/2023 06:46] matin6517
+👀👀
+
+{Reactions}
+👀 (2) 
+
+[02/14/2023 23:33] xyzbtchunt
+Any update?
+
+{Reactions}
+👍 (2) 🥹 
+
+[02/17/2023 16:46] ladboy233
+🥹
+
+{Reactions}
+😂 (4) 
+
+[02/17/2023 16:48] praise95
+👀 👀 👀
+
+
+[02/17/2023 17:07] matin6517
+👀👀
+
+
+[02/18/2023 09:24] ahmet5611
+https://github.com/code-423n4/code423n4.com/commit/a1e7220324074fbab25eeacc8242e3d856cecb05
+
+{Embed}
+https://github.com/code-423n4/code423n4.com/commit/a1e7220324074fbab25eeacc8242e3d856cecb05
+Update findings.csv · code-423n4/code423n4.com@a1e7220
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/a1e7220324074fbab25eeacc8242e3d856cecb05-4A5A2
+
+{Reactions}
+👍 (7) 
+
+[02/18/2023 09:28] matin6517
+just one High☹️ 
+I'd expected more😫
+
+
+[02/18/2023 09:35] ahmet5611
+Be happy with it : ) i have 0
+
+{Reactions}
+🙏 (4) 
+
+[02/18/2023 11:18] ladboy233
+😂🥲
+
+
+[02/18/2023 12:26] chaduke3730
+Everybody seems to be doing well this time 🙂
+
+{Reactions}
+👍🏻 (2) 
+
+[02/18/2023 12:32] chaduke3730
+got to do a High five next time
+
+{Reactions}
+😂 
+
+[02/18/2023 13:04] matin6517
+We'll surely gonna learn from your findings if the repo would changed to public
+
+
+[02/18/2023 21:12] chaduke3730
+@MatinYes, let's learn from each other
+
+{Reactions}
+🍻 
+
+[02/19/2023 08:36] matin6517
+This is exactly me in this contest
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2023 - biconomy-jan04 [1059824531537133588].txt_Files/scientist_patrick-64641488-1CA1D.jpg
+
+{Reactions}
+cheers_badger (3) 
+
+[02/19/2023 15:24] mountxlover
+When we will get the official report though ?
+
+
+[02/20/2023 17:21] itsmetechjay
+:C4Keycap:  💸 🎉 Awards for **Biconomy - Smart Contract Wallet**:
+
+$11,676.68 USDC » @taek 
+$7,414.33 USDC » V_B (@Barichek, @Vlad B | zkSync)
+$3,703.38 USDC » @AITechCoder 
+$1,811.55 USDC » @0xdeadbeef0x 
+$1,294.31 USDC » @gogo 
+$1,283.16 USDC » @romand 
+$1,208.86 USDC » @0xSmartContract  
+$1,080.21 USDC » @zaskoh 
+$940.23 USDC » @Rolezn 
+$925.81 USDC » @Atarpara 
+$865.91 USDC » @HE1M 
+$859.47 USDC » @immeas 
+$771.51 USDC » @MalfurionWhitehat 
+$770.87 USDC » @peakbolt 
+$755.73 USDC » @adriro 
+$741.87 USDC » @gz627 
+$676.14 USDC » @Ruhum 
+$666.61 USDC » @zapaz 
+$658.61 USDC » @csanuragjain 
+$621.96 USDC » @Koolex 
+$609.55 USDC » @peanuts 
+$577.51 USDC » @0xladboy | Sparkware 
+$570.89 USDC » @chrisdior4 
+$528.53 USDC » @cccz 
+$492.03 USDC » @supernova 
+$449.96 USDC » @Deleted User 
+$444.60 USDC » @IllIllI 
+$426.04 USDC » @0x1f8b 
+$399.78 USDC » @lukris02 
+$387.27 USDC » @horsefacts 
+$361.01 USDC » @btk 
+$361.01 USDC » @0xAgro 
+$315.87 USDC » @Franfran 
+$297.66 USDC » @ro 
+$252.75 USDC » @hihen 
+$227.04 USDC » @chaduke 
+$198.40 USDC » @Haipls 
+$194.25 USDC » @Tointer 
+$185.85 USDC » @CharlesPal 
+$172.14 USDC » @Tricko 
+$149.42 USDC » @orion 
+$149.42 USDC » PwnedNoMore (@izhuer, @ItsNio, @papr1ka2)
+$148.24 USDC » @kankodu 
+$127.24 USDC » @wait 
+$125.51 USDC » @jonatascm - ✈ until 23/11 
+$125.51 USDC » @Matin 
+$125.51 USDC » @spacelord47 
+$125.51 USDC » @Smit 
+$120.09 USDC » @thinklab 
+$101.52 USDC » @giovannidisiena 
+$94.78 USDC » @0x52 
+$85.48 USDC » @ast3ros 
+$85.48 USDC » @Lirios
+$81.33 USDC » @Diana 
+$81.33 USDC » @cryptostellar5 
+$78.26 USDC » @0xbepresent
+$78.26 USDC » @prc 
+$78.26 USDC » @hansfriese 
+$78.26 USDC » @0xDave 
+$78.26 USDC » @kutu 
+$75.26 USDC » @0xhacksmithh 
+$75.26 USDC » @RaymondFam 
+$75.26 USDC » @Bnke 
+$62.76 USDC » @Kalzak
+$48.98 USDC » BClabs (@nalus, @Reptilia)
+$48.98 USDC » @bin2chen 
+$44.83 USDC » @Deivitto 
+$44.83 USDC » SleepingBugs (@Deivitto, @0xLovesleep)
+$38.76 USDC » @ICP 
+$38.76 USDC » @arialblack14 
+$38.76 USDC » @privateconstant
+$38.76 USDC » @shark 
+$38.76 USDC » cthulhu_cult (@badbird, seanamani)
+$38.76 USDC » @larsson 
+$38.76 USDC » Secureverse (@imkapadia, @Nsecv, @0xwhiteDevil)
+$38.76 USDC » @code-cipher 
+$38.76 USDC » @Rageur
+
+{Reactions}
+🎉 (5) 
+
+[02/20/2023 17:21] itsmetechjay
+$36.50 USDC » @Raiders 
+$36.50 USDC » @Sathish9098 
+$36.50 USDC » @nadin 
+$36.50 USDC » @prady 
+$36.50 USDC » @sorryNotsorry 
+$36.50 USDC » @hl_ 
+$36.50 USDC » @MogiBlack 
+$36.50 USDC » @2997ms 
+$36.50 USDC » @MyFDsYours 
+$36.50 USDC » @Viktor_Cortess 
+$36.50 USDC » @Josiah 
+$36.50 USDC » @Udsen 
+$36.50 USDC » @tsvetanovv 
+$36.50 USDC » @joestakey 
+$36.50 USDC » @Thunder 
+$36.50 USDC » @juancito
+$26.26 USDC » @dragotanqueray 
+$26.26 USDC » @jayus 
+$26.26 USDC » @aviggiano 
+$26.26 USDC » @ey88 
+$26.26 USDC » @Qeew  
+$26.26 USDC » @0x73696d616f 
+$22.72 USDC » @Manboy 
+$22.72 USDC » @static 
+$22.72 USDC » @StErMi 
+$22.72 USDC » @wallstreetvilkas 
+$22.72 USDC » @ayeslick
+$22.72 USDC » @Fon 
+
+🏁 Findings summary
+---------------------------
+High risk findings: 91 total, 7 unique
+Med risk findings: 47 total, 8 unique
+Gas reports: 22 
+QA reports: 54
+
+Awards will be distributed on Polygon within the next week. Congratulations, everyone! 💸 💸 💸
+
+*If you participated in this contest and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.*
+
+{Reactions}
+👍 (15) 😀 (5) 
+
+[02/20/2023 17:24] ladboy233
+😂
+
+
+[02/20/2023 17:28] jayusjay
+Wow this was a lot of highs
+
+
+[02/20/2023 18:02] chaduke3730
+I have two high
+
+{Reactions}
+4739_Skeletor (6) 
+
+[02/20/2023 18:03] chaduke3730
+no regret, need more luck next time.
+
+{Reactions}
+💜 (2) 👏 
+
+[02/20/2023 19:47] web3sec
+woww, it's amazing to see my name on the list for the first time. Thank you folks 🕵🏻‍♂️
+
+{Reactions}
+hi5 (4) 
+
+[02/20/2023 20:00] chaduke3730
+@Raiders365 that is a good sign that you will be here all year long 🙂
+
+{Reactions}
+💪🏻 
+
+[02/20/2023 20:01] chaduke3730
+congtats!
+
+{Reactions}
+❤️ 
+
+[02/20/2023 20:08] web3sec
+Thank you so much @chaduke
+
+
+[02/20/2023 21:21] chaduke3730
+@Raidersyou are welcome
+
+{Reactions}
+C4Keycap (2) 
+
+[02/20/2023 21:21] chaduke3730
+buddy
+
+
+[02/21/2023 00:34] 0xtraub
+I played and found nothing so I'm looking forward to this report
+
+
+[02/21/2023 14:52] Snoopy#0942
+When will the report for this one get published?
+
+
+[02/21/2023 15:08] cloudellie
+Congratulations! 🎉
+
+{Reactions}
+❤️ 
+
+[02/22/2023 06:54] web3sec
+Thank youu : )
+
+{Reactions}
+💯 
+
+[02/23/2023 20:56] aitechcoder
+Oh my god, thank you!!! First time on a list and such a high bounty 🙂 Love you guys ❤️
+
+{Reactions}
+hi5 (11) 🎉 (9) 
+
+[02/24/2023 12:29] cloudellie
+Hey congrats! Very solid first payout! :C4Keycap: 🐺 :hi5:
+
+
+[02/24/2023 14:13] chaduke3730
+@AITechCoderfirst time seeing such a first, congrats!
+
+
+[02/24/2023 14:14] chaduke3730
+Don't spend it all, save some
+
+
+==============================================================
+Exported 230 message(s)
+==============================================================
